@@ -1,0 +1,5 @@
+mochawesome-report/**/*
+node_modules/**/*
+processId.txt
+.processId.txt
+
