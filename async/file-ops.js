@@ -36,7 +36,7 @@ function FileOps() {}
         fs.chmod(oldFilename, 777, function (err) {
             fs.rename(oldFilename, newFilename, function (err) {
                 fs.lstat(newFilename, function (err, stats) {
-                    var isSymLink = stats.isSymbolicLink();
+                    //var isSymLink = stats.isSymbolicLink();
                 });
             });
         });
