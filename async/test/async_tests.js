@@ -15,7 +15,7 @@ describe("Async tests", function() {
     });
 
     it("Should read async", function() {
-        dirSync.asyncRead();
+        console.log(dirSync.asyncRead());
     })
 
 });
