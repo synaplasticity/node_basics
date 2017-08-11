@@ -1,0 +1,25 @@
+{
+  "name": "async_basics",
+  "version": "1.0.0",
+  "description": "Basics",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synaplasticity/async_basics.git"
+  },
+  "author": "Vinod",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/synaplasticity/async_basics/issues"
+  },
+  "homepage": "https://github.com/synaplasticity/async_basics#readme",
+
+"devDependencies": {
+    "chai": "^4.0.1",
+    "mochawesome": "^2.2.0",
+    "sinon": "^2.3.2"
+  }
+}
