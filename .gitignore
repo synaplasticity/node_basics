@@ -1,5 +1,6 @@
-async/mochawesome-report/**/*
-async/node_modules/**/*
-async/processId.txt
-async/.processId.txt
-
+*.log
+*.txt
+.DS_Store
+node_modules/
+**/*.log
+**/*.debug
