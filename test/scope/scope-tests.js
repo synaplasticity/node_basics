@@ -21,5 +21,6 @@ describe('Scope tests', function() {
         expect(scope.getLocalName() === 'local name');
     });
 
+
 });
 

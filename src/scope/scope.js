@@ -17,8 +17,18 @@ var name = 'Hartfield';
     Scope.prototype.getLocalName = function() {
         // Always declar the var
         var name = 'local name';
-        return name;
+       return name;
     };
+
+// While function name declaration override var declaration of the same name,
+// it's not true for assignments.
+var myName = 'Foo';
+    Scope.prototype.myName = function() {
+        return  'Bar';
+    };
+    console.log(typeof(myName)); // String
+
+
 
 
 module.exports = Scope;
