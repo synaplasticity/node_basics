@@ -8,10 +8,24 @@ const requestHandler = (request, response) => {
 
 const server = http.createServer(requestHandler)
 
-server.listen(port, (err) => {
-    if (err) {
-        return console.log('Error ', err)
-    }
 
-    console.log(`Server is running on ${port} ...`)
-})
+function startServer() {
+    server.listen(port, (err) => {
+        if (err) {
+            return console.log('Error ', err);
+        }
+        console.log(`Server is running on ${port} ...`);
+    });
+}
+
+function stopServer() {
+    console.log('closing ...')
+    server.close((err) => {
+        console.error(err)
+    })
+    setImmediate(() => server.emit('close'))
+}
+
+module.exports = { startServer, stopServer }
+
+startServer()

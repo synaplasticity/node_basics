@@ -1,16 +1,28 @@
 const reqProm = require('request-promise')
 const request = require('request')
 const express = require('express')
-const port = 3000
+const port = 3010
 const app = express()
-const apiUrl = 'http://dataservice.accuweather.com/locations/v1/cities/IN/search'
+const searchURI = 'https://dataservice.accuweather.com/locations/v1/cities/IN/search'
+const forecastURI = 'https://dataservice.accuweather.com/forecasts/v1/daily/1day/'
+const acc_api_key = 'XZAoJMN1MEkhWGxdnIiFKtqfFW7MM4Q6'
 
 const options = {
     method: 'GET',
-    uri: apiUrl,
+    uri: searchURI,
     qs: {
-        q: 'Bangalore',
-        apikey: 'CqYzGhxxdiSBH83ehfMrGX5rDYVs09FW'
+        q: 'Mumbai',
+        apikey: acc_api_key
+    },
+    json: true
+}
+
+const forecast_options = {
+    method: 'GET',
+    uri: forecastURI,
+    qs: {
+        q: '204842',
+        apikey: acc_api_key
     },
     json: true
 }
@@ -21,23 +33,33 @@ const asyncErrHandlerWrapper = fn =>
             .catch(next)
     }
 
-app.get('/:city', asyncErrHandlerWrapper(async(req, res, next) => {
-    user_city = options.qs.q = req.params.city
-    console.log(`Processing /:city...${user_city}`)
+app.get('/:location', asyncErrHandlerWrapper(async(req, res, next) => {
+    user_loc = options.qs.q = req.params.Location
+    console.log(`Processing /:location...${user_loc}`)
 
-    await getCity(req, res)
-    
-    const city_key = res.city[0].Key
-    console.log(`City key : ${city_key}`)
+    await getLocation(req, res)
+    const loc_key = res.location[0].Key
+    console.log(`Location key : ${loc_key}`)
 
-    res.send(res.city)
+    await getWeather4Location(loc_key)
+
+    res.send(res.forecast_data)
 }))
 
-function getCity(req, res) {
+function getLocation(req, res) {
     return reqProm(options).then((data) => {
         console.log(data)
-        res.city = data
+        res.location = data
     })
+}
+ 
+function getWeather4Location(loc_key, req, res) {
+    forecast_options.qs.q = loc_key
+    return reqProm(forecast_options)
+        .then((data) => {
+            console.log(data)
+            res.forecast_data = data
+        })
 }
 
 function errHandler(err, req, res, next) {
@@ -52,7 +74,7 @@ app.listen(port, (err) => console.log(`Listening on ${port} ... Now with AccuWea
 
 // reqProm(options)
 //     .then((data) => {
-//         console.log(`City key : ${data[0].Key}`)
+//         console.log(`Location key : ${data[0].Key}`)
 //         console.log(data)
 //     })
 //     .catch((err) => {
