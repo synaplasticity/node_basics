@@ -1,16 +1,19 @@
 {
   "name": "JSBasics",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "test": "mocha"
-  },
+  "description": "Simple basics node/express examples.",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.1.2",
     "express": "^4.16.3",
+    "mocha": "^5.2.0",
     "pg": "^7.4.3",
     "request": "^2.88.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "sinon": "^6.1.5"
+  },
+  "scripts": {
+    "test-unit": "NODE_ENV=test mocha '/**/*.spec.js'"
   }
 }
