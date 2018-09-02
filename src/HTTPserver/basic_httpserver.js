@@ -1,5 +1,5 @@
 const http = require('http')
-const port = 3000
+const default_port = 3000
 
 const requestHandler = (request, response) => {
     console.log(request.url)
@@ -9,7 +9,7 @@ const requestHandler = (request, response) => {
 const server = http.createServer(requestHandler)
 
 
-function startServer() {
+function startServer(port) {
     server.listen(port, (err) => {
         if (err) {
             return console.log('Error ', err);
@@ -28,4 +28,4 @@ function stopServer() {
 
 module.exports = { startServer, stopServer }
 
-startServer()
+// startServer()
