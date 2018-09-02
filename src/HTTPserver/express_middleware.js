@@ -9,10 +9,13 @@ function simpleLogger(req, res, next) {
 
 app.use(simpleLogger)
 
-app.get('/', (req, res, next) => {
-    return res.send('Hello from ExpressJS middleware. Now with logging.')
-    // throw new Error('Duh')
-})
+
+function getApp() {
+    app.get('/', (req, res, next) => {
+        return res.send('Hello from ExpressJS middleware. Now with logging.');
+    });
+    return app
+}
 
 function errHandler(err, req, res, next) {
     console.log(err)
@@ -21,4 +24,8 @@ function errHandler(err, req, res, next) {
 
 app.use(errHandler)
 
-app.listen(port, (err) => console.log(`Listening on ${port}`))
+// app.listen(port, (err) => console.log(`Listening on ${port}`))
+
+module.exports = { getApp }
+
+// getApp();
