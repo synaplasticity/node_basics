@@ -1,29 +1,20 @@
 const express = require('express')
+const util = require('./express_utils')
 const port = 3000
-const app = express()
-var server
+const app = express();
+exports.app = app;
+var server;
 
-app.get('/', (request, response) => {
-    console.log(app.request.url)
-    response.send('Greetings from ExpressJS')
-})
-
-
-function startServer(port) {
-    server = app.listen(port, (err) => {
-        if (err) {
-            return console.log('Duh... ', err);
-        }
-        console.log(`ExpressJS server is listening on ${port}`);
+function getApp() {
+    app.get('/', (request, response) => {
+        console.log(app.request.url);
+        response.send('Greetings from ExpressJS');
     });
-    return server
+    return app
 }
 
-function stopServer(server) {
-    server.close()
-}
+module.exports = {getApp}
 
-module.exports = {startServer, stopServer}
-
-// startServer() 
-// stopServer(server)
+// const h_app = getApp()
+// server = util.startServer(h_app, port) 
+// util.stopServer(server)
