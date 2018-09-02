@@ -1,3 +1,5 @@
+'use strict'
+
 const { errorHandler } = require("./error_handler");
 
 const { simpleLogger } = require("./simple_logger");
@@ -30,3 +32,6 @@ app.use(errorHandler)
 // app.listen(port, (err) => console.log(`Listening on ${port}`))
 
 module.exports = { getApp }
+
+// getApp()
+// util.startServer(app, port)
