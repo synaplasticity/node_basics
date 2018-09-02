@@ -4,7 +4,7 @@ const server = require('../../src/HTTPServer/basic_httpserver')
 
 describe('Basic HTTPServer tests', () => {
 
-    beforeEach(() => server.startServer)
+    beforeEach(() => server.startServer(3000))
     afterEach(() => server.stopServer())
 
     it('Successful request', (done) => {
