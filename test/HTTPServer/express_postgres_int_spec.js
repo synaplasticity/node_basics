@@ -19,6 +19,8 @@ describe('Express postgress tests', () => {
     it('Must return the user list', (done) => {
         request(uri, (req, res, body) => {
             done()
+            res.statusCode.equal(200)
+            res.headers['content-type'].should.contain('application/json')
             expect(body).to.equal('[{"name":"Amadeus","age":150}]')
             expect(JSON.parse(body)[0].name).to.equal('Amadeus')
         })
